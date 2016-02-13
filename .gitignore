@@ -20,8 +20,9 @@ _cgo_export.*
 
 _testmain.go
 
+gin-bin
+
 *.exe
 *.test
 *.prof
 
-# Created by .ignore support plugin (hsz.mobi)

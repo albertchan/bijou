@@ -1,0 +1,10 @@
+# Database config
+host: localhost
+database: bijou
+
+# Application config
+cookie_secret: dsEgiq5Dv2OjvUp9
+current_user: Albert
+drain_interval_sec: 2
+public_path: public
+

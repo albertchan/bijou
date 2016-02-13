@@ -33,17 +33,17 @@ You can now point your browser to [http://localhost:8080]( http://localhost:8080
 ## Project structure
 
 ```
-glass/
+bijou/
 ├── app/
 │   ├── controllers/
 │   ├── core/
 │   ├── helpers/
 │   ├── models/
-│   ├── public/
 │   ├── views/
 │   ├── config.yml
 │   └── server.go
 ├── client/
+│   ├── gulp/
 │   ├── scripts/
 │   ├── styles/
 │   └── package.json
@@ -53,7 +53,7 @@ glass/
     └── js/
 ```
 
-### Backend /app/*
+#### Backend /app/*
 
 `/controllers`
 
@@ -84,4 +84,18 @@ Templates using standard `Go` template system.
 The main entry point for the application. This file also contains routes definitions.
 
 
-### Frontend /client/*
+#### Frontend /client/*
+
+`/gulp`
+
+Gulp tasks for frontend build pipeline
+
+`/scripts`
+
+Frontend JavaScripts, including React commponents and Redux architecture
+
+`/styles`
+
+Stylesheets written in Sass
+
+## References

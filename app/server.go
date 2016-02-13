@@ -1,53 +1,53 @@
 package main
 
 import (
+
 	"net/http"
 	"time"
 
+	"github.com/albertchan/bijou/app/controllers/web"
+	"github.com/albertchan/bijou/app/core"
 	"github.com/codegangsta/negroni"
-	"github.com/julienschmidt/httprouter"
+	_ "github.com/lib/pq"
 	"github.com/meatballhat/negroni-logrus"
 	"github.com/tylerb/graceful"
-	"github.com/unrolled/render"
+	"github.com/unrolled/secure"
 )
-
-type Application struct {
-	router *httprouter.Router
-	neg    *negroni.Negroni
-	ren    *render.Render
-}
-
-func NewApplication() *Application {
-	app := &Application{}
-	app.router = httprouter.New()
-	app.neg = negroni.New()
-	app.ren = render.New(render.Options{
-		Directory: "views",
-		Extensions: []string{".html", ".tmpl"},
-	})
-
-	return app
-}
-
-func IndexHandler(ren *render.Render) httprouter.Handle {
-	return httprouter.Handle(func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-		ren.HTML(w, http.StatusOK, "index", nil)
-	})
-}
 
 func main() {
 
-	drainInterval := 2*time.Second
+	// Instantiate new app
+	app := core.NewApplication()
+	drainInterval := time.Duration(app.Config.DrainInterval) * time.Second
 
-	app := NewApplication()
+	// Configure Negroni
+	app.Neg.Use(negroni.NewStatic(http.Dir(app.Config.PublicPath)))
+
+	// Logging
+	app.Neg.Use(negronilogrus.NewMiddleware())
+
+	// Security - change these for production!
+	secureMiddleware := secure.New(secure.Options{
+		AllowedHosts:          []string{"example.com", "ssl.example.com"},
+		SSLRedirect:           true,
+		SSLHost:               "ssl.example.com",
+		SSLProxyHeaders:       map[string]string{"X-Forwarded-Proto": "https"},
+		STSSeconds:            315360000,
+		STSIncludeSubdomains:  true,
+		STSPreload:            true,
+		FrameDeny:             true,
+		ContentTypeNosniff:    true,
+		BrowserXssFilter:      true,
+		ContentSecurityPolicy: "default-src 'self'",
+		IsDevelopment:         true,
+	})
+	app.Neg.Use(negroni.HandlerFunc(secureMiddleware.HandlerFuncWithNext))
 
 	// Routes
-	app.router.GET("/", IndexHandler(app.ren))
+	app.Router.GET("/", web.Index(app.Ren))
 
-	// Middlewares
-	app.neg.Use(negroni.NewStatic(http.Dir("public")))
-	app.neg.Use(negronilogrus.NewMiddleware())
-	app.neg.UseHandler(app.router)
-	graceful.Run(":8888", drainInterval, app.neg)
+	// HttpRouter
+	app.Neg.UseHandler(app.Router)
+	graceful.Run(":8888", drainInterval, app.Neg)
 
 }
