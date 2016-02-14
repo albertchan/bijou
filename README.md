@@ -1,7 +1,7 @@
 Bijou
 =====
 
-An opinionated project skeleton for web applications comprised of the following core components:
+An opinionated web application skeleton with MVC pattern comprised of the following core components:
 
 - Negroni, an idiomatic approach to web middleware in Go
 - HttpRouter, a lightweight high performance HTTP request router for Go
