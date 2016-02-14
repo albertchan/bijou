@@ -8,10 +8,10 @@ import (
 	"github.com/albertchan/bijou/app/controllers/web"
 	"github.com/albertchan/bijou/app/core"
 	"github.com/codegangsta/negroni"
+	"github.com/goincremental/negroni-sessions"
 	_ "github.com/lib/pq"
 	"github.com/meatballhat/negroni-logrus"
 	"github.com/tylerb/graceful"
-	"github.com/unrolled/secure"
 )
 
 func main() {
@@ -26,28 +26,19 @@ func main() {
 	// Logging
 	app.Neg.Use(negronilogrus.NewMiddleware())
 
-	// Security - change these for production!
-	secureMiddleware := secure.New(secure.Options{
-		AllowedHosts:          []string{"example.com", "ssl.example.com"},
-		SSLRedirect:           true,
-		SSLHost:               "ssl.example.com",
-		SSLProxyHeaders:       map[string]string{"X-Forwarded-Proto": "https"},
-		STSSeconds:            315360000,
-		STSIncludeSubdomains:  true,
-		STSPreload:            true,
-		FrameDeny:             true,
-		ContentTypeNosniff:    true,
-		BrowserXssFilter:      true,
-		ContentSecurityPolicy: "default-src 'self'",
-		IsDevelopment:         true,
-	})
-	app.Neg.Use(negroni.HandlerFunc(secureMiddleware.HandlerFuncWithNext))
+	// Secure
+	app.Neg.Use(negroni.HandlerFunc(app.Secure.HandlerFuncWithNext))
+
+	// Sessions
+	app.Neg.Use(sessions.Sessions(app.Config.SessionName, app.CookieStore))
 
 	// Routes
-	app.Router.GET("/", web.Index(app.Ren))
+	app.Router.GET("/", web.Index(app.Render))
 
 	// HttpRouter
 	app.Neg.UseHandler(app.Router)
+
+	// Graceful shutdown
 	graceful.Run(":8888", drainInterval, app.Neg)
 
 }
