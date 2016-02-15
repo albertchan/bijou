@@ -1,0 +1,58 @@
+{
+  "name": "bijou",
+  "version": "0.0.1",
+  "description": "An opinionated web application skeleton using Go, Negroni, HttpRouter, and React.",
+  "scripts": {
+    "start": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "git+ssh://git@github.com/albertchan/bijou.git",
+  "keywords": [
+    "go",
+    "negroni",
+    "httprouter",
+    "pq",
+    "react"
+  ],
+  "author": "Albert Chan",
+  "license": "MIT",
+  "dependencies": {
+    "browserify": "~11.x.x",
+    "classnames": "~2.x.x",
+    "es6-promise": "~3.x.x",
+    "history": "~1.x.x",
+    "i18next": "~2.x.x",
+    "i18next-xhr-backend": "~0.x.x",
+    "isomorphic-fetch": "^2.x.x",
+    "lodash": "~4.x.x",
+    "object-assign": "~4.x.x",
+    "pg": "^4.x.x",
+    "pg-hstore": "^2.x.x",
+    "react": "^0.14.x",
+    "react-dom": "^0.14.x",
+    "react-redux": "^4.x.x",
+    "react-router": "^2.0.0",
+    "redux": "^3.x.x",
+    "react-router-redux": "^2.x.x",
+    "sequelize": "^3.x.x",
+    "store": "^1.x.x"
+  },
+  "devDependencies": {
+    "babel": "~5.x.x",
+    "babelify": "~6.x.x",
+    "gulp": "~3.x.x",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-cssnano": "~2.x.x",
+    "gulp-if": "~2.x.x",
+    "gulp-notify": "~2.x.x",
+    "gulp-plumber": "~1.x.x",
+    "gulp-rename": "~1.x.x",
+    "gulp-sass": "~2.x.x",
+    "gulp-sourcemaps": "~1.x.x",
+    "gulp-uglify": "~1.x.x",
+    "minimist": "~1.x.x",
+    "require-dir": "~0.3.x",
+    "vinyl-buffer": "~1.x.x",
+    "vinyl-source-stream": "~1.x.x"
+  }
+}
