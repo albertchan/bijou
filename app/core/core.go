@@ -3,6 +3,7 @@ package core
 import (
 	"database/sql"
 	"io/ioutil"
+	"net/http"
 	"path/filepath"
 
 	"github.com/codegangsta/negroni"
@@ -15,13 +16,14 @@ import (
 )
 
 type Application struct {
-	Router        *httprouter.Router
-	Neg           *negroni.Negroni
-	Render        *render.Render
-	Secure        *secure.Secure
-	DB            *sql.DB
-	Config        *Configuration
-	CookieStore   sessions.Store
+	Router      *httprouter.Router
+	Neg         *negroni.Negroni
+	Render      *render.Render
+	Secure      *secure.Secure
+	Static      *negroni.Static
+	DB          *sql.DB
+	Config      *Configuration
+	CookieStore sessions.Store
 }
 
 func NewApplication() *Application {
@@ -65,8 +67,15 @@ func NewApplication() *Application {
 	// sessions
 	app.CookieStore = cookiestore.New([]byte(app.Config.CookieSecret))
 
+	// HttpRouter
 	app.Router = httprouter.New()
+
+	// Negroni
 	app.Neg = negroni.New()
+
+	// middleware handler for serving static files
+	app.Static = negroni.NewStatic(http.Dir(config.PublicPath))
+	app.Static.Prefix = "/assets"
 
 	return app
 }

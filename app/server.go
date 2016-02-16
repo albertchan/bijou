@@ -1,8 +1,6 @@
 package main
 
 import (
-
-	"net/http"
 	"time"
 
 	"github.com/albertchan/bijou/app/controllers/web"
@@ -20,8 +18,8 @@ func main() {
 	app := core.NewApplication()
 	drainInterval := time.Duration(app.Config.DrainInterval) * time.Second
 
-	// Configure Negroni
-	app.Neg.Use(negroni.NewStatic(http.Dir(app.Config.PublicPath)))
+	// Serve static files
+	app.Neg.Use(app.Static)
 
 	// Logging
 	app.Neg.Use(negronilogrus.NewMiddleware())
