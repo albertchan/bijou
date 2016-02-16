@@ -1,5 +1,6 @@
 var gulp         = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
+    cssnano      = require('gulp-cssnano'),
     gulpif       = require('gulp-if'),
     plumber      = require('gulp-plumber'),
     rename       = require('gulp-rename'),
@@ -12,7 +13,7 @@ var RELEASE = config.release;
 
 // Styles task
 gulp.task('styles', function() {
-    return gulp.src(config.srcPath.styles + 'app.scss')
+    return gulp.src(config.src.path.styles + 'app.sass')
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))

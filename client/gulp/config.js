@@ -3,10 +3,20 @@ var argv = require('minimist')(process.argv.slice(2)),
 
 // file locations
 module.exports = {
+    vendors: [
+        { require: 'classnames', expose: 'classnames' },
+        { require: 'lodash', expose: 'object-assign' },
+        { require: 'object-assign', expose: 'object-assign' },
+        { require: 'react', expose: 'react' },
+        { require: 'react-dom', expose: 'react-dom' }
+    ],
     src: {
         scripts: ['./scripts/**/*'],
         styles:  ['./styles/**/*'],
-        locales: ['../locales/**/*.json']
+        locales: ['../locales/**/*.json'],
+        path: {
+            styles: ['./styles/']
+        }
     },
     dest: {
         locales: '../public/locales/',

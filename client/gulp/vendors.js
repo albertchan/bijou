@@ -10,16 +10,9 @@ var gulp       = require('gulp'),
 // settings
 var RELEASE = config.release;
 
-// vendor dependencies
-var vendors = [
-    { require: 'classnames', expose: 'classnames' },
-    { require: 'object-assign', expose: 'object-assign' },
-    { require: 'react', expose: 'react' },
-    { require: 'react-dom', expose: 'react-dom' }
-];
-
 // Vendors task
 gulp.task('vendors', function() {
+    var vendors = config.vendors;
     var bundler = browserify({
         // no source maps for vendor libs
         debug: false

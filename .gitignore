@@ -20,9 +20,11 @@ _cgo_export.*
 
 _testmain.go
 
-gin-bin
-
 *.exe
 *.test
 *.prof
+
+node_modules
+public/
+gin-bin
 
