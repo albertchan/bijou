@@ -5,10 +5,18 @@ var argv = require('minimist')(process.argv.slice(2)),
 module.exports = {
     vendors: [
         { require: 'classnames', expose: 'classnames' },
+        { require: 'i18next', expose: 'i18next' },
+        { require: 'i18next-xhr-backend', expose: 'i18next-xhr-backend' },
         { require: 'lodash', expose: 'object-assign' },
         { require: 'object-assign', expose: 'object-assign' },
         { require: 'react', expose: 'react' },
-        { require: 'react-dom', expose: 'react-dom' }
+        { require: 'react-dom', expose: 'react-dom' },
+        { require: 'react-redux', expose: 'react-redux' },
+        { require: 'react-router', expose: 'react-router' },
+        { require: 'react-router-redux', expose: 'react-router-redux' },
+        { require: 'redux', expose: 'redux' },
+        { require: 'redux-thunk', expose: 'redux-thunk' },
+        { require: 'store', expose: 'store' }
     ],
     src: {
         scripts: ['./scripts/**/*'],

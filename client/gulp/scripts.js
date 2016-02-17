@@ -22,6 +22,10 @@ gulp.task('scripts', function() {
         bundler.transform(babelify);
         bundler.add(bundleConfig.entries);
 
+        config.vendors.forEach(function(vendor) {
+            bundler.external(vendor.require);
+        });
+
         var bundle = function() {
             return bundler.bundle()
                 .on('error', HandleErrors)
