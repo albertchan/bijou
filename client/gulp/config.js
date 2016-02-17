@@ -28,7 +28,7 @@ module.exports = {
         // extensions
         extensions: ['.js', '.jsx'],
         // source maps
-        debug: true,
+        debug: false,
         fullPaths: true,
         // A separate bundle will be generated for config
         bundleConfigs: [{

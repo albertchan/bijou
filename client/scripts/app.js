@@ -4,6 +4,7 @@ import i18next from 'i18next';
 import XHR from 'i18next-xhr-backend';
 import * as localStore from 'store';
 import Root from './containers/Root';
+import configureStore from './store/configureStore';
 
 if (typeof window !== 'undefined') {
 
@@ -21,6 +22,7 @@ if (typeof window !== 'undefined') {
     let initialState = {
         currentLocale: locale
     };
+    const store = configureStore(initialState);
 
     // i18next options
     const i18nextOptions = {

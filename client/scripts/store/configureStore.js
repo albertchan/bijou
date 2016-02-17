@@ -6,8 +6,9 @@ import api from '../middleware/api';
 import rootReducer from '../reducers';
 import routes from '../routes';
 
+const reduxRouterMiddleware = syncHistory(browserHistory);
+
 export default function configureStore(initialState) {
-    const reduxRouterMiddleware = syncHistory(browserHistory);
     const store = createStore(
         rootReducer,
         initialState,
