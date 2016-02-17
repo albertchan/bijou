@@ -6,5 +6,5 @@ database: bijou
 cookie_secret: dsEgiq5Dv2OjvUp9
 current_user: Albert
 drain_interval_sec: 2
-public_path: public
-
+public_path: ../public
+view_path: views
