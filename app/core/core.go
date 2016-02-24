@@ -2,6 +2,7 @@ package core
 
 import (
 	"database/sql"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"path/filepath"
@@ -10,6 +11,7 @@ import (
 	"github.com/goincremental/negroni-sessions"
 	"github.com/goincremental/negroni-sessions/cookiestore"
 	"github.com/julienschmidt/httprouter"
+	_ "github.com/lib/pq"
 	"github.com/unrolled/render"
 	"github.com/unrolled/secure"
 	"gopkg.in/yaml.v2"
@@ -24,6 +26,10 @@ type Application struct {
 	DB          *sql.DB
 	Config      *Configuration
 	CookieStore sessions.Store
+}
+
+type Context struct {
+	DB *sql.DB
 }
 
 func NewApplication() *Application {
@@ -41,6 +47,14 @@ func NewApplication() *Application {
 
 	app := &Application{}
 	app.Config = &config
+
+	// connect to database
+	// https://godoc.org/github.com/lib/pq
+	db, err := sql.Open("postgres", fmt.Sprintf("user=%v dbname=%s sslmode=verify-full", config.CurrentUser, config.DBName))
+	if err != nil {
+		panic(err)
+	}
+	app.DB = db
 
 	// render middleware
 	app.Render = render.New(render.Options{
