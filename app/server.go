@@ -21,6 +21,9 @@ func main() {
 	// Serve static files
 	app.Neg.Use(app.Static)
 
+	// Set db
+	app.Neg.Use(core.SetDB(app.DB))
+
 	// Logging
 	app.Neg.Use(negronilogrus.NewMiddleware())
 

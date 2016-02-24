@@ -28,10 +28,6 @@ type Application struct {
 	CookieStore sessions.Store
 }
 
-type Context struct {
-	DB *sql.DB
-}
-
 func NewApplication() *Application {
 
 	// load YAML config file
