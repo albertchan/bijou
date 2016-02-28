@@ -34,7 +34,8 @@ func main() {
 	app.Neg.Use(sessions.Sessions(app.Config.SessionName, app.CookieStore))
 
 	// Routes
-	app.Router.GET("/", web.Index(app.Render))
+	app.Router.POST("/api/user", web.Index(app.Render))
+    app.Router.GET("/*all", web.Index(app.Render))
 
 	// HttpRouter
 	app.Neg.UseHandler(app.Router)
