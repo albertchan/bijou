@@ -3,6 +3,8 @@ import { render } from 'react-dom';
 import { connect } from 'react-redux';
 import i18n from 'i18next';
 import { resetErrorMessage } from '../actions';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 // connect with decorator
 @connect(mapStateToProps, {resetErrorMessage})
@@ -23,10 +25,12 @@ export default class App extends Component {
         const { children, inputValue } = this.props;
 
         return (
-            <div>
+            <div className="wrapper">
+                <Header />
                 <main className="content">
                     {children}
                 </main>
+                <Footer />
             </div>
         );
     }

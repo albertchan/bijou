@@ -4,11 +4,13 @@ import * as containers from './containers';
 
 const {
     App,
-    User
+    Login,
+    Signup
 } = containers;
 
 export default (
     <Route path="/" component={App}>
-        <Route path="/:login" component={User} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
     </Route>
 )

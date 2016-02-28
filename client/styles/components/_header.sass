@@ -1,0 +1,26 @@
+.header
+  display: flex
+  align-items: center
+  padding: $grid-gutter-width/2 $grid-gutter-width
+  min-height: 64px
+  background: $brand-primary
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2)
+  color: $body-bg
+  z-index: $zindex-navbar
+
+  a
+    color: $body-bg
+
+    &:hover
+      opacity: 0.7
+
+  h1
+    margin: 0
+    font-size: 1.125em
+
+  .navbar-right
+    margin-left: auto
+    margin-right: $grid-gutter-width/2
+
+    > a
+      margin-left: 1.125em

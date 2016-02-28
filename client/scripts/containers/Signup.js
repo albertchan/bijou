@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 @connect(mapStateToProps, {})
-export default class User extends Component {
+export default class Signup extends Component {
     static propTypes = {
 
     };
@@ -11,14 +11,10 @@ export default class User extends Component {
         super(props);
     }
 
-    componentDidMount() {
-
-    }
-
     render() {
         return (
-            <div>
-                Test
+            <div className="">
+
             </div>
         );
     }

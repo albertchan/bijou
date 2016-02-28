@@ -2,5 +2,12 @@
   "app": {
     "name": "Bijou",
     "tagline": "An opinionated web application skeleton with Go and React"
+  },
+  "header": {
+    "login": "Login",
+    "signup": "Sign Up"
+  },
+  "footer": {
+    "copyright": "Copyright © 2016 Albert Chan"
   }
 }
