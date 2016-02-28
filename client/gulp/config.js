@@ -21,12 +21,14 @@ module.exports = {
     src: {
         scripts: ['./scripts/**/*'],
         styles:  ['./styles/**/*'],
+        fonts:   ['../assets/fonts/**/*'],
         locales: ['../locales/**/*.json'],
         path: {
             styles: ['./styles/']
         }
     },
     dest: {
+        fonts:   '../public/fonts',
         locales: '../public/locales/',
         scripts: '../public/js/',
         styles:  '../public/css/',
