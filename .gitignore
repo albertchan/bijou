@@ -27,4 +27,4 @@ _testmain.go
 node_modules
 public/
 gin-bin
-
+config.yml
