@@ -12,7 +12,7 @@ export default class Footer extends React.Component {
     render() {
         return (
             <footer className="footer">
-                <o>{i18n.t('footer.copyright')}</o>
+                <p>{i18n.t('footer.copyright')}</p>
             </footer>
         );
     }
